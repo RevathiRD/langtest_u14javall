@@ -21,3 +21,4 @@ build:
     - mvn --version    
     - ant -version 
     - gradle --version    
+    - sudo docker images
