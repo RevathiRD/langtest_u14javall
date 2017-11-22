@@ -20,5 +20,5 @@ build:
     - echo $SHIPPABLE_JDK_VERSION
     - mvn --version    
     - ant -version 
-    - gradle --version    
+    #- gradle --version    
     - sudo docker images
