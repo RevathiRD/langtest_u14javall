@@ -22,3 +22,111 @@ build:
     - ant -version 
     #- gradle --version    
     - sudo docker images
+
+resources:
+
+
+
+
+#DOCKER OPTIONS
+  - name: ar-dockeroptions
+    type: dockerOptions
+    version:
+      memory: 100
+
+
+      
+#IMAGES
+
+
+
+
+#LOAD BALANCER
+  - name: ar-loadbalancer
+    type: loadBalancer
+    pointer:
+      sourceName: EC2Contai-EcsElast-GPCOXIIKWPUJSREYA
+
+
+#PARAMS
+  - name: ar-params
+    type: params
+    version:
+      params:
+        foo: bar
+        #secure: Xuq1cwGOn1lR1UTMfcwhdPUhJJXr0FeeG/M0/l4v7HFcjIRdrML13//R4RbMWxIeUtmdRWT1y3HRgQSqsRbYRIYF/6rTYH3/eazkowA2hHPZpT8vNfr3tFZJwQeSTf0qGtZOMO1iOacgaFOBgAdBCheJA8tN3ARHapUWk5bxuj7CpIq/LNWEbR/TcNNWaZJkyoWeK6/4U61xNPbVgyL1e73m3WmHPcGwpgTyxW+T1jqgh5m99D3p87UrfTeS6ss5YNA8lkZmFpdYZrq2LIKBMSJuq46Vj1VwRrtRGXYN2eYzmyDvpevciShm6Ai8w8o18eY6dwKrch8PSNloCVDHDA== 
+        DB_HOST: "ds015700.mlab.com"
+        DB_NAME: "ayeaye"
+        DB_PORT: "15700"
+        DB_USERNAME: "aye0aye"
+        DB_PASSWORD: "aye0aye"
+        ENVIRONMENT: "test-aws"
+      
+        
+#REPLICAS
+  - name: ar-replica
+    type: replicas
+    version:
+      count: 2
+
+#STATE
+  - name: ar-state
+    type: state
+    
+#TIME
+  - name: ar-testtime
+    type: time
+    seed:
+      interval: "1 1 1 * *" #"*/9 * 9 9 *"
+      
+#VERSIONS
+
+  - name: ar-version
+    type: version
+    seed:
+      versionName: "6.1.2"
+
+jobs:
+
+#DEPLOY  
+ 
+        
+#JENKINSJOB
+  
+
+#MANIFESTS
+  - name: ar-manifest
+    type: manifest
+    steps:
+      - IN: ar-version
+      # versionNumber: 100
+      #- OUT: ar-image4invalidformat
+      - IN: ar-tg1
+    allowPublicAccess: true
+
+#PROVISION
+ 
+#RELEASE
+  - name: ar-release
+    type: release
+    #allowPublicAccess: true
+   
+    steps:
+      - IN: ar-version
+         #versionName: testrelease
+    
+      - TASK: managed
+        bump: rc
+       #- IN: ar-tg3
+    flags:
+      - ar-release    
+ 
+
+
+triggers:
+
+#TRIGGER
+  - name: ar-tg1
+    type: trigger
+    version:
+counter: 0
