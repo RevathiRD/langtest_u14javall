@@ -3,9 +3,9 @@ language: java
 
 # Version number
 jdk:
-  #- openjdk7
- # - openjdk8
-  #- openjdk9
+  - openjdk7
+  - openjdk8
+#  - openjdk9 # supporting only in u16javall
   - oraclejdk8
   - oraclejdk9
  
